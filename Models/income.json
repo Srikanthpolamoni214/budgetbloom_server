@@ -1,0 +1,30 @@
+[
+  
+  {
+    "id": 37,
+    "email": "srikanth123@gmail.com",
+    "incomes": [
+      {
+        "source": "football",
+        "amount": "555",
+        "category": "food",
+        "date": "2025-02-02",
+        "createdAt": "2025-07-07T06:27:11.659Z"
+      },
+      {
+        "source": "football",
+        "amount": "555",
+        "category": "food",
+        "date": "2025-02-02",
+        "createdAt": "2025-07-07T06:27:11.804Z"
+      },
+      {
+        "source": "football",
+        "amount": "555",
+        "category": "food",
+        "date": "2025-02-02",
+        "createdAt": "2025-07-07T06:27:12.288Z"
+      }
+    ]
+  }
+]

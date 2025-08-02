@@ -1,0 +1,44 @@
+[
+  {
+    "description": "i have buy the shoes ",
+    "amount": "5000",
+    "date": "2025-02-17",
+    "category": "wear",
+    "month": "jan"
+  },
+  {
+    "description": "www",
+    "amount": "5000",
+    "date": "2025-06-17",
+    "category": "www",
+    "month": "jan"
+  },
+  {
+    "description": "ss",
+    "amount": "4000",
+    "date": "2025-02-02",
+    "category": "food",
+    "month": "jan"
+  },
+  {
+    "description": "ss",
+    "amount": "9000",
+    "date": "2025-02-02",
+    "category": "food",
+    "month": "jan"
+  },
+  {
+    "description": "ss",
+    "amount": 9000,
+    "date": "2025-02-02",
+    "category": "food",
+    "month": "jan"
+  },
+  {
+    "description": "hii",
+    "amount": 5000,
+    "date": "2020-02-02",
+    "category": "food",
+    "month": "jan"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "user123": {
+    "savingsGoal": 15000,
+    "currencySymbol": "$",
+    "lastUsedFilters": {
+      "range": "last7days",
+      "category": "Groceries",
+      "customStart": "2025-06-01",
+      "customEnd": "2025-06-07"
+    }
+  }
+}

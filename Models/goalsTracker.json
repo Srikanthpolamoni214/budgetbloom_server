@@ -1,0 +1,26 @@
+[
+  {
+    "name": "car",
+    "amount": "1200000",
+    "targetDate": "2027-02-02",
+    "category": "futureBuy",
+    "id": "1750171041075",
+    "saved": 0
+  },
+  {
+    "name": "bike",
+    "amount": "200000",
+    "targetDate": "2026-02-02",
+    "category": "futureBuy",
+    "id": "1750171214889",
+    "saved": 0
+  },
+  {
+    "id": "1718634453021",
+    "name": "Emergency Fund",
+    "amount": "50000",
+    "targetDate": "2025-12-31",
+    "category": "Savings",
+    "saved": 0
+  }
+]

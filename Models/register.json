@@ -1,0 +1,58 @@
+[
+  {
+    "name": "srikanth",
+    "phoneNumber": "6303518496",
+    "email": "polamonisrikanth123@gmail.com",
+    "password": "123456789",
+    "age": "22",
+    "gender": "male"
+  },
+  {
+    "name": "venu",
+    "phoneNumber": "6303518496",
+    "email": "venu@gmail.com",
+    "password": "123456789",
+    "age": "22",
+    "gender": "male"
+  },
+  {
+    "name": "maxi",
+    "phoneNumber": "123654789",
+    "email": "maxi@gmail.com",
+    "password": "123456789",
+    "age": "22",
+    "gender": "male"
+  },
+  {
+    "name": "rupi",
+    "phoneNumber": "987456321",
+    "email": "rupi",
+    "password": "123456789",
+    "age": "22",
+    "gender": "male"
+  },
+  {
+    "name": "shiva",
+    "phoneNumber": "4563217895",
+    "email": "shiva@gmail.com",
+    "password": "123456789",
+    "age": "22",
+    "gender": "male"
+  },
+  {
+    "name": "sai",
+    "phoneNumber": "7842668558",
+    "email": "sai@gmail.com",
+    "password": "7842668558",
+    "age": "28",
+    "gender": "male"
+  },
+  {
+    "name": "sai",
+    "phoneNumber": "7842668558",
+    "email": "saikumar@gmail.com",
+    "password": "7842668558",
+    "age": "28",
+    "gender": "male"
+  }
+]
