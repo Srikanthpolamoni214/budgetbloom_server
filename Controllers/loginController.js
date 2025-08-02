@@ -28,12 +28,12 @@ const loginController = (req, res) => {
 
     const user = results[0];
 
-    if (!user.passwords) {
+    if (!user.password) {
       return res.status(400).json({ error: "Password not found in database" });
     }
 
     // Compare passwords using .then()
-    bcrypt.compare(password, user.passwords)
+    bcrypt.compare(password, user.password)
       .then((isMatch) => {
         if (!isMatch) {
           return res.status(401).json({ error: "Invalid email or password" });
