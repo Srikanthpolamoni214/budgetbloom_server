@@ -19,10 +19,13 @@ const reportRoute = require("./Routes/reportRoute");
 const allTransactions = require("./Routes/allTransactions");
 const goalRouter = require("./Routes/goalsRouter");
 const reviewRoute = require("./Routes/ratingsRoute");
+const pool = require("./Models/db.js")
 const googleAuthRoutes = require("./Routes/googleAuth");
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 3200;
+
+
 
 const verifyRouter = require("./Routes/verifyEmailRoute");
 
