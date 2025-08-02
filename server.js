@@ -32,7 +32,7 @@ const verifyRouter = require("./Routes/verifyEmailRoute");
 app.use(
   cors({
     origin: [
-      "http://localhost:5174",
+      "http://localhost:5174","http://localhost:5173",
       "https://budgetbloom-app-ncdf.onrender.com",'http://localhost:3201'
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
