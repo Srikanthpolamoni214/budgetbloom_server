@@ -24,18 +24,20 @@ console.log('Email from token:', email);
       //   <h2>Email Verified ✅</h2>
       //   <p><a href="https://budgetbloom-client-app.vercel.app/login">Click here to log in</a></p>
       // `);
-    res.send(`
-  <html>
-    <head>
-      <meta http-equiv="refresh" content="1;url=https://budgetbloom-client-app.vercel.app/login" />
-    </head>
-    <body>
-    <div style="text-align: center; align-items: center; justify-content: center; padding: 20px;border: 2px solid green; border-radius: 10px;">
-      <h2 style="color: green; text-align: center;">Email Verified ✅</h2>
-      <p>You’ll be redirected to login shortly...</p>
-    </div>
-  </html>
-`);
+      
+//     res.send(`
+//   <html>
+//     <head>
+//       <meta http-equiv="refresh" content="1;url=https://budgetbloom-client-app.vercel.app/login" />
+//     </head>
+//     <body>
+//     <div style="text-align: center; align-items: center; justify-content: center; padding: 20px;border: 2px solid green; border-radius: 10px;">
+//       <h2 style="color: green; text-align: center;">Email Verified ✅</h2>
+//       <p>You’ll be redirected to login shortly...</p>
+//     </div>
+//   </html>
+// `);
+res.send("verified successfully, you can now login to your account. Redirecting to login page...");
 
     });
   } catch (err) {
