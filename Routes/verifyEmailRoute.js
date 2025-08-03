@@ -11,7 +11,7 @@ router.get('/verify-email', (req, res) => {
 
   try {
     const { email } = jwt.verify(token, process.env.SECRET_KEY);
-
+console.log('Email from token:', email);
     // Update user to isVerified = true
     const query = 'UPDATE users SET isVerified = true WHERE email = ?';
     db.query(query, [email], (err, result) => {
