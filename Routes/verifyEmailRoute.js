@@ -20,10 +20,22 @@ console.log('Email from token:', email);
         return res.status(500).send('Verification failed');
       }
 
-      res.send(`
-        <h2>Email Verified ✅</h2>
-        <p><a href="https://budgetbloom-client-app.vercel.app/login">Click here to log in</a></p>
-      `);
+      // res.send(`
+      //   <h2>Email Verified ✅</h2>
+      //   <p><a href="https://budgetbloom-client-app.vercel.app/login">Click here to log in</a></p>
+      // `);
+    res.send(`
+  <html>
+    <head>
+      <meta http-equiv="refresh" content="3;url=https://budgetbloom-client-app.vercel.app/login" />
+    </head>
+    <body>
+      <h2>Email Verified ✅</h2>
+      <p>You’ll be redirected to login shortly...</p>
+    </body>
+  </html>
+`);
+
     });
   } catch (err) {
     console.error('Invalid/expired token:', err);
