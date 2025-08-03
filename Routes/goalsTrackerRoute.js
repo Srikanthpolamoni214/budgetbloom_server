@@ -37,6 +37,7 @@ const getTotalSavings = (userId) => {
         resolve(totalIncome - totalExpenses);
       });
     });
+
   });
 };
 
@@ -70,6 +71,7 @@ router.get('/', authenticate, async (req, res) => {
 // ➕ POST /api/goalsTracker
 router.post('/', authenticate, (req, res) => {
   const { name, amount, targetDate, category, saved } = req.body;
+  console.log("Received goal data:", req.body);
   if (!name || !amount || !targetDate) {
     return res.status(400).json({ error: 'Missing required fields' });
   }

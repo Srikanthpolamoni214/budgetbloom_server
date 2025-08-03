@@ -50,7 +50,7 @@ const expensespost = (req, res) =>{
     //     } else {
     //         res.send({message: "Please fill all fields"})
     //         }
-
+console.log("Received expense data:", req.body);
 db.query("INSERT INTO expenses (id, email, description, amount, date, category, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [req.user.id, req.user.email, description, parseFloat(amount), date, category , month], (err) => { if (err) { 
             console.error("Error inserting expense:", err);

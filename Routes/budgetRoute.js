@@ -62,7 +62,7 @@ router.post("/", authenticate, (req, res) => {
 router.delete("/:budget_id", authenticate, (req, res) => {
   const budgetId = parseInt(req.params.budget_id);
   const userId = req.user.id;
-
+console.log("Deleting budget with ID:", budgetId, "for user ID:", userId);
   db.query("DELETE FROM budget WHERE budget_id = ? AND id = ?", [budgetId, userId], (err, result) => {
     if (err) {
       console.error("Error deleting budget:", err);

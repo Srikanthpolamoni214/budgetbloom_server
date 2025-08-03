@@ -22,7 +22,7 @@ router.get('/verify-email', (req, res) => {
 
       res.send(`
         <h2>Email Verified ✅</h2>
-        <p><a href="http://localhost:5173/login">Click here to log in</a></p>
+        <p><a href="https://budgetbloom-client-app.vercel.app/login">Click here to log in</a></p>
       `);
     });
   } catch (err) {

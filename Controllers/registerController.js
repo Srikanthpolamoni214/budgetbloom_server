@@ -242,7 +242,7 @@ router.post('/register', upload.single('photo'), (req, res) => {
 //         };
 const token = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '10m' });
 
-const verifyLink = `http://localhost:3201/verify-email?token=${token}`;
+const verifyLink = `https://budgetbloom-client-app.vercel.app/verify-email?token=${token}`;
 
 const mailOptions = {
   from: process.env.EMAIL_USER,
