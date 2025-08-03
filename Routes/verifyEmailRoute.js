@@ -27,12 +27,13 @@ console.log('Email from token:', email);
     res.send(`
   <html>
     <head>
-      <meta http-equiv="refresh" content="3;url=https://budgetbloom-client-app.vercel.app/login" />
+      <meta http-equiv="refresh" content="1;url=https://budgetbloom-client-app.vercel.app/login" />
     </head>
     <body>
-      <h2>Email Verified ✅</h2>
+    <div style="text-align: center; align-items: center; justify-content: center; padding: 20px;border: 2px solid green; border-radius: 10px;">
+      <h2 style="color: green; text-align: center;">Email Verified ✅</h2>
       <p>You’ll be redirected to login shortly...</p>
-    </body>
+    </div>
   </html>
 `);
 
