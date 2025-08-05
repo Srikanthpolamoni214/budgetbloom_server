@@ -33,6 +33,7 @@ app.use(
   cors({
     origin: [
     'http://localhost:5173', // allow your frontend origin
+     'http://localhost:5174',
       "https://budgetbloom-client-app.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
