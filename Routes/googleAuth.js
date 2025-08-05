@@ -111,8 +111,8 @@ dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY;
 
 // POST route for Google Auth
-router.post('/google-auth', (req, res) => {
-  const { name, email, photoUrl,photo } = req.body;
+router.post('/google-register', (req, res) => {
+  const { name, email, photoUrl,password } = req.body;
 
 console.log("Google Auth Data:", req.body);
   if (!email || !name || !photoUrl) {
@@ -129,8 +129,8 @@ console.log("Google Auth Data:", req.body);
       if (results.length === 0) {
         // New user → insert
         db.query(
-          'INSERT INTO users (userName, email, photo, registeredVia) VALUES (?, ?, ?, ?)',
-          [name, email, photoUrl, 'google']
+          'INSERT INTO users (userName, email, photo, registeredVia, password) VALUES (?, ?, ?, ?, ?)',
+          [name, email, photoUrl, 'google' , password]
         );
       }
 const user = results[0];
