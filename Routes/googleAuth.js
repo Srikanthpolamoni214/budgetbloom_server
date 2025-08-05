@@ -133,8 +133,12 @@ console.log("Google Auth Data:", req.body);
           [name, email, photoUrl, 'google']
         );
       }
+const user = results[0];
+      // Create JWT token
+      const { id } = user;
+  
 
-      const token = jwt.sign({ email, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign({ email,id, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
 
       res.json({
         success: true,
