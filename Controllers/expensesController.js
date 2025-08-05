@@ -71,7 +71,7 @@ const expensesget = (req, res) =>{
             return res.status(500).send("Database error");
             }
             console.log("Fetched expenses:", rows);
-            rows = rows.map(row => ({
+            expensesRows = rows.map(row => ({
                 id: row.id,
                 email: row.email,
                 description: row.description,
@@ -80,7 +80,8 @@ const expensesget = (req, res) =>{
                 category: row.category,
                 month: row.month
             }));
-            res.send(rows);
+            console.log("Processed expenses:", expensesRows);
+            res.send(expensesRows);
             });
 
 }
