@@ -70,6 +70,7 @@ const expensesget = (req, res) =>{
             console.error("Error fetching expenses:", err);
             return res.status(500).send("Database error");
             }
+            console.log("Fetched expenses:", rows);
             rows = rows.map(row => ({
                 id: row.id,
                 email: row.email,
