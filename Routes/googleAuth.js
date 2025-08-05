@@ -1,75 +1,25 @@
-// const express = require('express');
-// const router = express.Router();
-// const jwt = require('jsonwebtoken');
-// const db = require('../Models/db');
-// const dotenv = require("dotenv")
-// dotenv.config()
-// const SECRET_KEY = process.env.SECRET_KEY;
-// router.post('/google-auth',  (req, res) => {
-//   const { name, email, photo } = req.body;
-//   if (!email || !name) {
-//     return res.status(400).json({ success: false, message: 'Missing user data' });
-//   }
-//   try {
-//     // Check if user already exists
-//      db.query('SELECT * FROM users WHERE email = ?', [email], (err,results)=>{
-// if (results.length === 0) {
-//       // New user → Insert into DB
-//        db.query(
-//         'INSERT INTO users (userName, email, photo, registeredVia) VALUES (?, ?, ?, ?)',
-//         [name, email, photo, 'google']
-//       );
-//     }
-// // Create JWT token
-//     const token = jwt.sign({ email ,name }, SECRET_KEY, { expiresIn: '1h' });
-//     console.log("token", token)
-//     res.json({
-//       success: true,
-//       message: 'Google sign-in successful',
-//       token,
-//     });
-//     });  
-//   } catch (err) {
-//     console.error('Google Auth Error:', err);
-//     res.status(500).json({ success: false, message: 'Server error' });
-//   }
-// });
-// module.exports = router;
+
 
 // const express = require('express');
 // const router = express.Router();
 // const jwt = require('jsonwebtoken');
-// const multer = require('multer');
-// const path = require('path');
 // const db = require('../Models/db');
 // const dotenv = require("dotenv");
 // dotenv.config();
 
 // const SECRET_KEY = process.env.SECRET_KEY;
 
-// // Multer config
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/'); // Ensure this folder exists
-//   },
-//   filename: (req, file, cb) => {
-//     const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname);
-//     cb(null, uniqueName);
-//   }
-// });
-// const upload = multer({ storage: storage });
+// // POST route for Google Auth
+// router.post('/google-register', (req, res) => {
+//   const { name, email, photoUrl,password } = req.body;
 
-// // POST route for Google Auth + Photo Upload
-// router.post('/google-auth', upload.single('photo'), (req, res) => {
-//   const { name, email } = req.body;
-//   const photoPath = req.file ? req.file.filename : null;
-// console.log("Photo Path:", photoPath);
-//   if (!email || !name) {
+// console.log("Google Auth Data:", req.body);
+//   if (!email || !name || !photoUrl) {
 //     return res.status(400).json({ success: false, message: 'Missing user data' });
 //   }
 
 //   try {
-//     db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+//     db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
 //       if (err) {
 //         console.error("DB Error:", err);
 //         return res.status(500).json({ success: false, message: 'Database error' });
@@ -77,19 +27,23 @@
 
 //       if (results.length === 0) {
 //         // New user → insert
+//         const bcrypt = require("bcrypt");
+// const hashedPassword = await bcrypt.hash(password, 10);
+
 //         db.query(
-//           'INSERT INTO users (userName, email, photo, registeredVia) VALUES (?, ?, ?, ?)',
-//           [name, email, photoPath, 'google']
+//           'INSERT INTO users (userName, email, photo, registeredVia, password) VALUES (?, ?, ?, ?, ?)',
+//           [name, email, photoUrl, 'google' , hashedPassword]
 //         );
 //       }
 
-//       const token = jwt.sign({ email, name }, SECRET_KEY, { expiresIn: '1h' });
+
+//       const token = jwt.sign({ email, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
 
 //       res.json({
 //         success: true,
 //         message: 'Google sign-in successful',
 //         token,
-//         photoUrl: photoPath ? `/uploads/${photoPath}` : null
+//         photoUrl: photoUrl
 //       });
 //     });
 //   } catch (err) {
@@ -100,54 +54,65 @@
 
 // module.exports = router;
 
-
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
 const db = require('../Models/db');
 const dotenv = require("dotenv");
-dotenv.config();
 
+dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY;
 
-// POST route for Google Auth
 router.post('/google-register', (req, res) => {
-  const { name, email, photoUrl,password } = req.body;
+  const { name, email, photoUrl, password } = req.body;
 
-console.log("Google Auth Data:", req.body);
-  if (!email || !name || !photoUrl) {
-    return res.status(400).json({ success: false, message: 'Missing user data' });
+  if (!email || !name || !photoUrl || !password) {
+    return res.status(400).json({ success: false, message: 'Missing required fields' });
   }
 
-  try {
-    db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
-      if (err) {
-        console.error("DB Error:", err);
-        return res.status(500).json({ success: false, message: 'Database error' });
-      }
+  db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+    if (err) {
+      console.error("DB Error:", err);
+      return res.status(500).json({ success: false, message: 'Database error' });
+    }
 
-      if (results.length === 0) {
-        // New user → insert
+    if (results.length === 0) {
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
         db.query(
           'INSERT INTO users (userName, email, photo, registeredVia, password) VALUES (?, ?, ?, ?, ?)',
-          [name, email, photoUrl, 'google' , password]
+          [name, email, photoUrl, 'google', hashedPassword],
+          (insertErr) => {
+            if (insertErr) {
+              console.error("Insert Error:", insertErr);
+              return res.status(500).json({ success: false, message: 'User creation failed' });
+            }
+
+            const token = jwt.sign({ email, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
+            return res.json({
+              success: true,
+              message: 'Google sign-up successful',
+              token,
+              photoUrl,
+            });
+          }
         );
+      } catch (hashErr) {
+        console.error("Hash Error:", hashErr);
+        return res.status(500).json({ success: false, message: 'Password hashing failed' });
       }
-
-
-      const token = jwt.sign({ email,id, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
-
-      res.json({
+    } else {
+      // User already exists → Just issue token
+      const token = jwt.sign({ email, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
+      return res.json({
         success: true,
-        message: 'Google sign-in successful',
+        message: 'Google login successful',
         token,
-        photoUrl: photoUrl
+        photoUrl,
       });
-    });
-  } catch (err) {
-    console.error('Google Auth Error:', err);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
+    }
+  });
 });
 
 module.exports = router;
