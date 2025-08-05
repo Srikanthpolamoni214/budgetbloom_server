@@ -103,8 +103,10 @@ router.post('/google-register', (req, res) => {
         return res.status(500).json({ success: false, message: 'Password hashing failed' });
       }
     } else {
+      const user = results[0];
+    const {id} = user;
       // User already exists → Just issue token
-      const token = jwt.sign({ email, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign({ email, id, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
       return res.json({
         success: true,
         message: 'Google login successful',
