@@ -64,8 +64,19 @@ db.query("INSERT INTO expenses (id, email, description, amount, date, category, 
 const expensesget = (req, res) =>{
     // const expenses = readExpenses();
     // res.send(expenses);
+    // const id = null
+    // db.query("SELECT * FROM expenses WHERE email = ?", [req.user.email], (err, rows) => {
+    //     if (err) {
+    //         console.error("Error fetching expenses:", err);
+    //         return res.status(500).send("Database error");
+    //     }
+    //     const user = rows[0];
+    //   id= user.id;
 
-    db.query("SELECT * FROM expenses WHERE id = ?", [req.user.id], (err, rows) => {
+    // })
+       
+
+    db.query("SELECT * FROM expenses WHERE id = ?", [req.user.id ], (err, rows) => {
         if (err) {
             console.error("Error fetching expenses:", err);
             return res.status(500).send("Database error");
