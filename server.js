@@ -32,7 +32,7 @@ const verifyRouter = require("./Routes/verifyEmailRoute");
 app.use(
   cors({
     origin: [
-      'https://budgetbloom-client-app.vercel.app/', // allow your frontend origin
+      'https://budgetbloom-client-app.vercel.app', // allow your frontend origin
     'http://localhost:5173', // allow your frontend origin
      'http://localhost:5174',
      
