@@ -19,23 +19,20 @@ const reportRoute = require("./Routes/reportRoute");
 const allTransactions = require("./Routes/allTransactions");
 const goalRouter = require("./Routes/goalsRouter");
 const reviewRoute = require("./Routes/ratingsRoute");
-const pool = require("./Models/db.js")
+const pool = require("./Models/db.js");
 const googleAuthRoutes = require("./Routes/googleAuth");
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 3200;
-
-
 
 const verifyRouter = require("./Routes/verifyEmailRoute");
 
 app.use(
   cors({
     origin: [
-      'https://budgetbloom-client-app.vercel.app', // allow your frontend origin
-    'http://localhost:5173', // allow your frontend origin
-     'http://localhost:5174',
-     
+      "http://localhost:5173", // allow your frontend origin
+      "http://localhost:5174",
+      "https://budgetbloom-client-app.vercel.app", // allow your frontend origin
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
