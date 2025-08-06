@@ -41,7 +41,7 @@ const loginController = (req, res) => {
 
         // Passwords match — generate token
         const token = jwt.sign(
-          { email: user.email, id: user.id, photo: user.photo, name: user.userName },
+          { email: user.email, id: user.id, photo: user.photo ,photoUrl: user.photoUrl, name: user.userName },
           SECRET_KEY,
           { expiresIn: "1h" }
         );

@@ -81,7 +81,7 @@ router.post('/google-register', (req, res) => {
       try {
         const hashedPassword = await bcrypt.hash(password, 10);
         db.query(
-          'INSERT INTO users (userName, email, photo, registeredVia, password) VALUES (?, ?, ?, ?, ?)',
+          'INSERT INTO users (userName, email, photoUrl, registeredVia, password) VALUES (?, ?, ?, ?, ?)',
           [name, email, photoUrl, 'google', hashedPassword],
           (insertErr) => {
             if (insertErr) {
@@ -102,18 +102,38 @@ router.post('/google-register', (req, res) => {
         console.error("Hash Error:", hashErr);
         return res.status(500).json({ success: false, message: 'Password hashing failed' });
       }
-    } else {
-      const user = results[0];
-    const {id} = user;
-      // User already exists → Just issue token
-      const token = jwt.sign({ email, id, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
-      return res.json({
-        success: true,
-        message: 'Google login successful',
-        token,
-        photoUrl,
+    } 
+
+    else {
+      return res.status(400).json({ success: false, message: 'Email already exists'
       });
     }
+    // else {
+    //   const user = results[0];
+    // const {id} = user;
+    // bcrypt.compare(password, user.password, (compareErr, isMatch) => {
+    //     if (compareErr) {
+    //       console.error("Compare Error:", compareErr);
+    //       return res.status(500).json({ success: false, message: 'Password comparison failed' });
+    //     }
+    //     if (!isMatch) {
+    //       return res.status(401).json({ success: false, message: 'Invalid credentials' });
+    //     }
+
+
+
+    //   // User already exists → Just issue token
+    //   const token = jwt.sign({ email, id, name, photoUrl }, SECRET_KEY, { expiresIn: '1h' });
+    //   return res.json({
+    //     success: true,
+    //     message: 'Google login successful',
+    //     token,
+    //     photoUrl,
+    //   });
+    // })
+    // }
+
+    
   });
 });
 
