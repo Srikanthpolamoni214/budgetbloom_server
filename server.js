@@ -21,6 +21,7 @@ const goalRouter = require("./Routes/goalsRouter");
 const reviewRoute = require("./Routes/ratingsRoute");
 const pool = require("./Models/db.js");
 const googleAuthRoutes = require("./Routes/googleAuth");
+const contactRouter = require("./Routes/contact");
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 3200;
@@ -65,7 +66,7 @@ app.use("/", goalRouter);
 app.use("/api/reviews", reviewRoute);
 app.use("/", verifyRouter);
 app.use("/", googleAuthRoutes);
-// server.js
+app.use("/", contactRouter);
 
 // Ensure 'uploads' directory exists
 const uploadsDir = path.join(__dirname, "uploads");
