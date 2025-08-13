@@ -14,7 +14,7 @@ const authenticate = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   if (!token) return res.status(401).send("Invalid token format.");
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.user = decoded;
     next();
   } catch (err) {
