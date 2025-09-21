@@ -79,7 +79,7 @@ app.use("/api/goalsTracker", goalsTrackerRoute);
 // Server
 const HOST = "0.0.0.0";
 app.listen(port, HOST,() => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`✅ Server listening at http://${HOST}:${PORT}`);
 });
 
 // Ensure data dir & file
