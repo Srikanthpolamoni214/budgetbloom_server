@@ -77,7 +77,8 @@ if (!fs.existsSync(uploadsDir)) {
 app.use("/api/goalsTracker", goalsTrackerRoute);
 
 // Server
-app.listen(port, () => {
+const HOST = "0.0.0.0";
+app.listen(port, HOST,() => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
