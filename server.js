@@ -24,7 +24,7 @@ const googleAuthRoutes = require("./Routes/googleAuth");
 const contactRouter = require("./Routes/contact");
 const app = express();
 dotenv.config();
-const port = process.env.PORT || 3200;
+const port = process.env.PORT || 4200;
 
 const verifyRouter = require("./Routes/verifyEmailRoute");
 
